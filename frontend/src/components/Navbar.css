@@ -1,0 +1,221 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar.scrolled {
+    background: var(--background-dark);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .logo-icon {
+    font-size: 1.8rem;
+    margin-right: 10px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .logo-text {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-link.active {
+    color: var(--text-light);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  .nav-icon {
+    font-size: 1.2rem;
+  }
+  
+  .nav-user {
+    position: relative;
+  }
+  
+  .user-menu-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    color: var(--text-gray);
+    transition: all 0.3s ease;
+  }
+  
+  .user-menu-trigger:hover {
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background: var(--background-light);
+    border-radius: 12px;
+    padding: 8px;
+    min-width: 200px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    color: var(--text-gray);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .menu-item:hover {
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  
+  /* Добавим стили для активного состояния пункта меню */
+.menu-item.active {
+    color: var(--text-light);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  /* Обновим стили для иконок в меню */
+  .menu-icon {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-item:hover .menu-icon {
+    transform: translateX(3px);
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Медиа-запросы для адаптивности */
+  @media (max-width: 768px) {
+    .navbar {
+      height: 60px;
+    }
+  
+    .navbar-container {
+      padding: 0 15px;
+    }
+  
+    .logo-text {
+      display: none;
+    }
+  
+    .nav-links {
+      gap: 15px;
+    }
+  
+    .nav-link {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+  
+    .username {
+      display: none;
+    }
+  
+    .user-menu {
+      right: -10px;
+    }
+  }
+  
+  /* Добавим эффект свечения для активных элементов */
+  .nav-link.active::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 25px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav-link.active:hover::before {
+    opacity: 0.4;
+    animation: pulse 1.5s infinite;
+  }

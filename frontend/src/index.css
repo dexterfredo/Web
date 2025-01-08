@@ -1,0 +1,23 @@
+:root {
+  /* Основная цветовая палитра */
+  --primary: #dc2626;          /* Основной красный */
+  --primary-dark: #991b1b;     /* Темно-красный */
+  --primary-light: #ef4444;    /* Светло-красный */
+  --secondary: #171717;        /* Почти черный */
+  --secondary-dark: #0a0a0a;   /* Глубокий черный */
+  --secondary-light: #262626;  /* Светлее черный */
+  --background: #ffffff;
+  --surface: #f8fafc;
+  --text-primary: #171717;
+  --text-secondary: #404040;
+  --border: #e5e5e5;
+  --error: #dc2626;
+  --success: #059669;
+}
+
+/* Общие стили */
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}

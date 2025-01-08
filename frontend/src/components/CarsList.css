@@ -1,0 +1,592 @@
+.cars-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+.car-card {
+  background: var(--background-light);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-main);
+  transition: var(--transition-main);
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.car-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%; /* Уменьшили с 50% до 25% */
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2), /* Уменьшили прозрачность */
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(25deg);
+  transition: all 0.75s ease;
+  z-index: 2;
+}
+
+.car-card:hover::before {
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Добавляем металлический градиент на карточку при наведении */
+.car-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    75deg,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0) 50%,
+    rgba(255,255,255,0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.car-card:hover::after {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(220, 38, 38, 0.1);
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,1) 0%,
+    rgba(248,248,248,1) 100%
+  );
+}
+
+.car-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255,255,255,0.1) 45%,
+    rgba(255,255,255,0.2) 50%,
+    rgba(255,255,255,0.1) 55%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.car-card:hover .car-image-container::after {
+  opacity: 1;
+}
+
+/* Добавляем металлический эффект на кнопки */
+.details-btn {
+  position: relative;
+  overflow: hidden;
+  /* ... существующие стили ... */
+}
+
+.details-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.details-btn:hover::before {
+  animation: buttonShine 0.75s;
+}
+
+@keyframes buttonShine {
+  100% {
+    left: 100%;
+  }
+}
+
+/* Добавляем металлический эффект на цену */
+.car-price {
+  position: relative;
+  /* ... существующие стили ... */
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary-dark) 50%,
+    var(--primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShine 3s linear infinite;
+}
+
+@keyframes textShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Добавляем металлический эффект на бейдж "В избранном" */
+.in-favorites-badge {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    145deg,
+    #f3f4f6 0%,
+    #e5e7eb 100%
+  );
+  /* ... существующие стили ... */
+}
+
+.in-favorites-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.in-favorites-badge:hover::before {
+  animation: badgeShine 1s;
+}
+
+@keyframes badgeShine {
+  100% {
+    left: 100%;
+  }
+}
+
+/* Улучшаем переходы */
+.car-card * {
+  transition: all 0.3s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.car-image-container {
+  position: relative;
+  width: 100%;
+  height: 220px; /* Фиксированная высота для изображения */
+  overflow: hidden;
+}
+
+.car-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Важно для правильного масштабирования */
+  transition: transform 0.5s ease;
+}
+
+.car-info {
+  padding: 20px;
+  background-color: #fadbdb;
+}
+
+.car-info h3 {
+  margin: 0 0 10px;
+  color: #000000;
+  font-size: 18px;
+  position: relative;
+  
+}
+
+.car-card:hover .car-info h3 {
+  background: linear-gradient(
+    90deg,
+    var(--secondary) 0%,
+    var(--secondary-dark) 50%,
+    var(--secondary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShine 3s linear infinite;
+}
+
+.car-card:hover .car-image {
+  transform: scale(1.05);
+}
+
+.car-year,
+.car-price {
+  margin: 5px 0;
+  color: #000000;
+}
+
+.car-price {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.car-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.details-btn,
+.add-favorite-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.details-btn {
+  padding: 10px 20px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition-main);
+}
+
+.add-favorite-btn {
+  padding: 10px 20px;
+  background: var(--gradient-secondary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition-main);
+}
+
+.details-btn:hover {
+  background-color: #2980b9;
+}
+
+.add-favorite-btn:hover {
+  background-color: #c0392b;
+}
+
+.in-favorites-badge {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: var(--accent-color);
+  color: var(--background-dark);
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.search-container {
+  margin: 20px auto 40px;
+  max-width: 800px;
+  padding: 8px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 50px;
+  box-shadow: var(--shadow-main);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.details-btn:hover,
+.add-favorite-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  background: var(--background-dark);
+  border: none;
+  border-radius: 25px;
+  transition: var(--transition-main);
+}
+
+.search-input::placeholder {
+  color: var(--text-gray);
+  opacity: 0.7;
+}
+
+.search-input:focus {
+  outline: none;
+  background: rgba(26, 26, 26, 0.95);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  right: 25px;
+  color: var(--text-gray);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Анимация при фокусе */
+.search-container:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Добавим задержку для каждой карточки */
+.car-card:nth-child(1) { animation-delay: 0.1s; }
+.car-card:nth-child(2) { animation-delay: 0.2s; }
+.car-card:nth-child(3) { animation-delay: 0.3s; }
+.car-card:nth-child(4) { animation-delay: 0.4s; }
+.car-card:nth-child(5) { animation-delay: 0.5s; }
+.car-card:nth-child(6) { animation-delay: 0.6s; }
+.car-card:nth-child(7) { animation-delay: 0.7s; }
+.car-card:nth-child(8) { animation-delay: 0.8s; }
+.car-card:nth-child(9) { animation-delay: 0.9s; }
+.car-card:nth-child(10) { animation-delay: 0.10s; }
+.car-card:nth-child(11) { animation-delay: 0.11s; }
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-gray);
+  font-size: 1.2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--background-dark);
+  border-radius: 12px;
+  margin-top: 10px;
+  padding: 10px 0;
+  box-shadow: var(--shadow-main);
+  z-index: 100;
+  display: none;
+}
+
+.search-container:focus-within .search-suggestions {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.suggestion-item {
+  padding: 10px 20px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition-main);
+}
+
+.suggestion-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .cars-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .search-container {
+    margin: 15px 10px 30px;
+    border-radius: 25px;
+  }
+
+  .search-input {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+
+  .car-actions {
+    flex-direction: column;
+  }
+  
+  .details-btn,
+  .add-favorite-btn {
+    width: 100%;
+  }
+}
+
+.car-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.car-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.car-image.error {
+  width: 50%;
+  height: auto;
+  opacity: 0.5;
+}
+
+.cars-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.add-car-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary, #dc2626);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-car-button:hover {
+  background: var(--primary-dark, #991b1b);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-car-button .add-icon {
+  font-size: 16px;
+}
+
+.cars-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary, #171717);
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+}
+
+.car-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

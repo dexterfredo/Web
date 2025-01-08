@@ -1,0 +1,245 @@
+.footer {
+  background: var(--background-dark);
+  color: var(--text-light);
+  padding: 60px 0 20px;
+  margin-top: auto;
+  position: relative;
+  margin-top: 50px; /* Отступ для разделителя */
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer-section {
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.footer-logo-icon {
+  font-size: 24px;
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.footer-logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-description {
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.footer-section h3 {
+  color: var(--text-light);
+  margin-bottom: 20px;
+  font-size: 18px;
+  position: relative;
+}
+
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.footer-links,
+.footer-contacts {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li,
+.footer-contacts li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: var(--text-gray);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color);
+}
+
+.footer-contacts li {
+  display: flex;
+  align-items: center;
+  color: var(--text-gray);
+}
+
+.footer-contacts svg {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social a {
+  color: var(--text-gray);
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-gray);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-logo {
+    justify-content: center;
+  }
+
+  .footer-section h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .footer-contacts li {
+    justify-content: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -3px; /* Позиционируем линию над футером */
+  left: 0;
+  right: 0;
+  height: 3px; /* Толщина линии */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--primary) 20%,
+    var(--primary-dark) 50%,
+    var(--primary) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+}
+
+/* Добавляем дополнительный светящийся эффект */
+.footer::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: glow 2s linear infinite;
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* Альтернативный вариант с двойной градиентной линией */
+.footer-divider {
+  height: 4px;
+  margin-bottom: 50px;
+  background: 
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--primary) 20%,
+      var(--primary-dark) 50%,
+      var(--primary) 80%,
+      transparent 100%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(23, 23, 23, 0.8) 20%,
+      var(--secondary) 50%,
+      rgba(23, 23, 23, 0.8) 80%,
+      transparent 100%
+    );
+  background-size: 100% 2px;
+  background-position: 0 0, 0 bottom;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Добавляем анимированный блик */
+.footer-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
